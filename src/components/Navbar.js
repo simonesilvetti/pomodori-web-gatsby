@@ -1,7 +1,31 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'gatsby'
 import github from '../img/github-icon.svg'
-import logo from '../img/logo.svg'
+import logo from '../img/logo_official.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faSearch,
+  faAddressBook,
+  faAirFreshener,
+  faAmbulance,
+  faAtom,
+  faBus,
+  faCoins,
+  faDice,
+} from '@fortawesome/free-solid-svg-icons'
+
+
+
+const Logo = class extends React.Component {
+  render() {
+    return (
+      <Link to="/" className="navbar-item" title="Logo">
+        <img className="navbar-img-logo" src={logo} alt="pomodori al sole" />
+      </Link>
+    )
+  };
+
+}
 
 const Navbar = class extends React.Component {
   constructor(props) {
@@ -23,76 +47,80 @@ const Navbar = class extends React.Component {
         // set the class in state for the navbar accordingly
         this.state.active
           ? this.setState({
-              navBarActiveClass: 'is-active',
-            })
+            navBarActiveClass: 'is-active',
+          })
           : this.setState({
-              navBarActiveClass: '',
-            })
+            navBarActiveClass: '',
+          })
       }
     )
   }
 
   render() {
     return (
-      <nav
-        className="navbar is-transparent"
-        role="navigation"
-        aria-label="main-navigation"
-      >
-        <div className="container">
-          <div className="navbar-brand">
-            <Link to="/" className="navbar-item" title="Logo">
-              <img src={logo} alt="Kaldi" style={{ width: '88px' }} />
-            </Link>
-            {/* Hamburger menu */}
-            <div
-              className={`navbar-burger burger ${this.state.navBarActiveClass}`}
-              data-target="navMenu"
-              onClick={() => this.toggleHamburger()}
-            >
-              <span />
-              <span />
-              <span />
-            </div>
-          </div>
-          <div
-            id="navMenu"
-            className={`navbar-menu ${this.state.navBarActiveClass}`}
-          >
-            <div className="navbar-start has-text-centered">
-              <Link className="navbar-item" to="/about">
-                About
-              </Link>
-              <Link className="navbar-item" to="/products">
-                Products
-              </Link>
-              <Link className="navbar-item" to="/blog">
-                Blog
-              </Link>
-              <Link className="navbar-item" to="/contact">
-                Contact
-              </Link>
-              <Link className="navbar-item" to="/contact/examples">
-                Form Examples
-              </Link>
-            </div>
-            <div className="navbar-end has-text-centered">
-              <a
-                className="navbar-item"
-                href="https://github.com/netlify-templates/gatsby-starter-netlify-cms"
-                target="_blank"
-                rel="noopener noreferrer"
+      <div>
+        <Logo />
+        <nav
+          className="navbar is-transparent"
+          role="navigation"
+          aria-label="main-navigation"
+        >
+          <div className="container">
+            <div className="navbar-brand">
+              {/* Hamburger menu */}
+              <div
+                className={`navbar-burger burger ${this.state.navBarActiveClass}`}
+                data-target="navMenu"
+                onClick={() => this.toggleHamburger()}
               >
-                <span className="icon">
-                  <img src={github} alt="Github" />
-                </span>
-              </a>
+                <span />
+                <span />
+                <span />
+              </div>
+            </div>
+            <div
+              id="navMenu"
+              className={`navbar-menu ${this.state.navBarActiveClass}`}
+            >
+              <div className="navbar-end has-text-centered">
+                <Link className="navbar-item" to="/">
+                  Home
+              </Link>
+                <Link className="navbar-item" to="/ricette-a-z">
+                  Ricette
+              </Link>
+                <Link className="navbar-item" to="/ricette">
+                  Orto
+              </Link>
+                <Link className="navbar-item" to="/chi-siamo">
+                  Chi Siamo
+              </Link>
+                <Link className="navbar-item" to="/chi-siamo">
+                  <FontAwesomeIcon icon={faSearch} size="1x" />
+                </Link>
+
+
+                {/* <Link className="navbar-item" to="/products">
+                  Products
+              </Link>
+                <Link className="navbar-item" to="/blog">
+                  Blog
+              </Link>
+                <Link className="navbar-item" to="/contact">
+                  Contact
+              </Link>
+                <Link className="navbar-item" to="/contact/examples">
+                  Form Examples
+              </Link> */}
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     )
   }
 }
+
+
 
 export default Navbar
